@@ -1,0 +1,20 @@
+DROP DATABASE IF EXISTS guessTheNumDBTest;
+CREATE DATABASE guessTheNumDBTest;
+
+USE guessTheNumDBTest;
+
+CREATE TABLE Game(
+    gameID INT PRIMARY KEY AUTO_INCREMENT,
+    answer VARCHAR(4),
+    gameStatus BOOLEAN NULL DEFAULT false
+);
+
+CREATE TABLE Round(
+    roundID INT PRIMARY KEY AUTO_INCREMENT,
+    gameID INT,
+    timeOfGuess TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    guess VARCHAR(10),
+    guessResult VARCHAR(10) NULL,
+    CONSTRAINT FOREIGN KEY (gameID)
+        REFERENCES Game(gameID)
+);
